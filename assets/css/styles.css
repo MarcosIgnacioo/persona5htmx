@@ -1,0 +1,26 @@
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 65%;
+    background: radial-gradient(circle, #89384B, #DC1041);
+}
+@font-face {
+    font-family: 'PersonifiedUX';
+    src: url('../fonts/PersonifiedUXRegular.ttf') format('truetype');
+}
+@font-face {
+    font-family: 'Earwig';
+    src: url('../fonts/earwig_factory_rg.otf') format('truetype');
+}
+
+body {
+    font-size: 10rem;
+    color: snow;
+    font-family: 'PersonifiedUX', sans-serif;
+}
+#popo{
+    font-family: 'Earwig';
+    font-size: 5rem;
+}
+
