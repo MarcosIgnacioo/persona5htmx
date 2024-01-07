@@ -1,8 +1,28 @@
 {{ template "head.html" . }}
 <body>
-        Hola
-        <h1 id="popo">Hola</h1>
+    <form hx-post="/tweet">
+        <input hidden type="" name="username" value="{{ .User.ID }}">
+        <h1>welcome {{ .User.Username }} </h1>
+        <label for="tweet">Tweet to your heart</label>
+        <textarea name="tweet" rows="2" cols="30"></textarea>
+            <button class="confirm-button" type="">
+                <div class="confirm-container">
+                    <span id="ok">Tweet</span>
+                    <span id="exclamation">!</span>
+                </div>
+            </button>
+    </form>
+    <div class="tweets">
+        {{ range .Tweets }}
+            {{ template "tweet" . }}
+        {{ end }}
+    </div>
 </body>
 {{ template "footer.html" . }}
 
-
+{{ define "tweet" }}
+    <div class="tweet">
+        <h1>{{ .Author }}</h1>
+        <p> {{ .Content }} </p>
+    </div>
+{{ end }}

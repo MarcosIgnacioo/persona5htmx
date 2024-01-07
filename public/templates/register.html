@@ -1,0 +1,25 @@
+{{ template "head.html" . }}
+<body>
+    <div class="left">
+        
+    </div>
+
+    <form hx-post="/user">
+        <h1>Register a new Phantom Thief</h1>
+        <label for="username">We will take your name!</label>
+        <input type="" name="username" value="" placeholder="popodoer123">
+        <label for="password">A password would be amazing too!</label>
+        <input type="password" name="password" value="" placeholder="pearsareamazing">
+        <button id="create-button" type="">
+            <div class="create-container">
+                <span id="ok">ok</span>
+                <span id="exclamation">!</span>
+            </div>
+        </button>
+    </form>
+
+    <div class="right">
+
+    </div>
+</body>
+{{ template "footer.html" . }}

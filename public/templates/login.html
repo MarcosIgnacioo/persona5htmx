@@ -1,0 +1,32 @@
+{{ template "head.html" . }}
+<style>
+* {
+
+    background: radial-gradient(circle, #4145a8, #4145a8);
+    background: ;
+}
+</style>
+<body>
+    <div class="left">
+        
+    </div>
+
+    <form hx-post="/login-user">
+        <h1>Log in Phantom</h1>
+        <label for="username">We will take your codename!</label>
+        <input type="" name="username" value="" placeholder="popodoer123">
+        <label for="password">A password is required and amazing!</label>
+        <input type="password" name="password" value="" placeholder="pearsareamazing">
+        <button id="create-button" type="">
+            <div class="create-container">
+                <span id="ok">ok</span>
+                <span id="exclamation">!</span>
+            </div>
+        </button>
+    </form>
+
+    <div class="right">
+
+    </div>
+</body>
+{{ template "footer.html" . }}

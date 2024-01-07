@@ -5,6 +5,12 @@
     font-size: 65%;
     background: radial-gradient(circle, #89384B, #DC1041);
 }
+footer * {
+    position: absolute;
+    top: 90%;
+    left: 2%;
+    font-size: 5rem !important;
+}
 @font-face {
     font-family: 'PersonifiedUX';
     src: url('../fonts/PersonifiedUXRegular.ttf') format('truetype');
@@ -17,10 +23,72 @@
 body {
     font-size: 10rem;
     color: snow;
+}
+input {
     font-family: 'PersonifiedUX', sans-serif;
 }
-#popo{
+
+h1, label, span{
+    font-family: 'PersonifiedUX', sans-serif;
+    font-size: 4rem;
+}
+h1 {
     font-family: 'Earwig';
-    font-size: 5rem;
+    font-size: 6rem;
+    text-align: center;
+}
+ span{
+    font-family: 'Earwig', sans-serif;
+    font-size: 12rem;
 }
 
+form {
+    display: flex;
+    flex-direction: column;
+    justify-items: center;
+    align-items: center;
+}
+.confirm-container {
+    margin-top: 25px;
+    display: flex;
+}
+.confirm-container:hover {
+    cursor:pointer;
+}
+.confirm-container:hover #ok {
+    rotate: -10deg;
+}
+
+.confirm-button {
+    border: none;
+    background-color: none;
+    color: snow;
+}
+
+.confirm-container:hover #exclamation {
+    rotate: 20deg;
+}
+
+.create-container {
+    margin-top: 25px;
+    display: flex;
+}
+.create-container:hover {
+    cursor:pointer;
+}
+.create-container:hover #ok {
+    rotate: -10deg;
+}
+
+.create-container:hover #exclamation {
+    rotate: 20deg;
+}
+#exclamation {
+    margin-left: 15px;
+    rotate: 15deg;
+}
+#create-button {
+    border: none;
+    background-color: none;
+    color: snow;
+}
