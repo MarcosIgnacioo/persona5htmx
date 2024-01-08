@@ -1,7 +1,7 @@
 {{ template "head.html" . }}
 <body>
     <form hx-post="/tweet">
-        <input hidden type="" name="username" value="{{ .User.ID }}">
+        <input hidden type="" name="username" value="{{ .User.Username }}">
         <h1>welcome {{ .User.Username }} </h1>
         <label for="tweet">Tweet to your heart</label>
         <textarea name="tweet" rows="2" cols="30"></textarea>

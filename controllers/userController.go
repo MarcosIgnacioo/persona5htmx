@@ -2,12 +2,10 @@ package controllers
 
 import (
 	"net/http"
-
 	"github.com/MarcosIgnacioo/personahtmx/crud"
 	"github.com/MarcosIgnacioo/personahtmx/helpers"
 	"github.com/MarcosIgnacioo/personahtmx/initializers"
 	"github.com/MarcosIgnacioo/personahtmx/models"
-	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 )
 
@@ -26,7 +24,7 @@ func CreateTest( c *gin.Context ) {
     c.HTML(http.StatusOK, "prueba.html", test)
 }
 
-func CreateUser(c *gin.Context)  {
+func RegisterUser(c *gin.Context)  {
     username := c.PostForm("username") 
     password := c.PostForm("password") 
 
@@ -45,13 +43,15 @@ func CreateUser(c *gin.Context)  {
         return
     }
 
-    sessionStorage := sessions.Default(c)
-    sessionStorage.Set("userId", user.ID)
     tweets := crud.GetAll() 
+    session, _ := initializers.Store.Get(c.Request, "session")
+    session.Values["user"] = user
+    session.Save(c.Request, c.Writer)
+
 
     helpers.CreateSession(&user, c)
-    session := models.Session { User: &user, Tweets: tweets, }
-    c.HTML(http.StatusOK, "index.html", session)
+    data := models.Session { User: &user, Tweets: tweets, }
+    c.HTML(http.StatusOK, "index.html", data)
 }
 
 func LogInUser(c *gin.Context)  {
@@ -60,14 +60,33 @@ func LogInUser(c *gin.Context)  {
     user := crud.Get(username)
 
     if helpers.CheckPasswordHash(password, user.Password) {
-        tweets := crud.GetAll()//Tunear esto apra que solo de los primeros 50 
+
+        tweets := crud.GetAll() //Tunear esto apra que soljjo de los primeros 50 
         helpers.CreateSession(user, c)
+        data := models.Session { User: user, Tweets: tweets, }
 
-        session := models.Session { User: user, Tweets: tweets, }
-
-        c.HTML(http.StatusOK, "index.html", session )
+        c.HTML(http.StatusOK, "index.html", data )
     } else {
         c.Status(400)
         return
     }
+}
+
+func LogOut(c *gin.Context) {
+    session, _ := initializers.Store.Get(c.Request, "session")
+    delete(session.Values, "user")
+    session.Save(c.Request, c.Writer)
+    return
+}
+
+func Count(c *gin.Context) {
+}
+
+func Test(c *gin.Context) {
+    user, err := helpers.GetUserSession(c)
+    if err != nil {
+        c.HTML(http.StatusForbidden, "login.html", nil)
+        return
+    }
+    c.HTML(http.StatusOK, "test.html", user)
 }

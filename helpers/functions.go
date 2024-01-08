@@ -3,9 +3,8 @@ package helpers
 import (
 	"errors"
 
-	"github.com/MarcosIgnacioo/personahtmx/crud"
+	"github.com/MarcosIgnacioo/personahtmx/initializers"
 	"github.com/MarcosIgnacioo/personahtmx/models"
-	"github.com/gin-contrib/sessions"
 	"github.com/gin-gonic/gin"
 	"golang.org/x/crypto/bcrypt"
 )
@@ -20,24 +19,18 @@ func CheckPasswordHash(password, hash string) bool {
     return err == nil
 }
 
-func CreateSession(user models.User, c *gin.Context){
-    sessionStorage := sessions.Default(c)
-    sessionStorage.Set("Username", user.Username)
+func CreateSession(user *models.User, c *gin.Context) {
+    session, _ := initializers.Store.Get(c.Request, "session")
+    session.Values["user"] = user
+    session.Save(c.Request, c.Writer)
 }
-func GetSession(c *gin.Context) (*models.User, error) {
-    sessionStorage := sessions.Default(c)
-
-    usernameValue := sessionStorage.Get("Username")
-
-    if usernameValue == nil {
-        return nil, errors.New("Not logged in")
+func GetUserSession(c *gin.Context) (*models.User, error) {
+    session, _ := initializers.Store.Get(c.Request, "session")
+    var user = &models.User{}
+    val := session.Values["user"]
+    var ok bool
+    if user, ok = val.(*models.User); !ok {
+        return nil, errors.New("Error at GetSession")
     }
-
-    username, ok := usernameValue.(string)
-    if !ok {
-        return nil, errors.New("Failed to assert Username as string")
-    }
-
-    user := crud.Get(username)
     return user, nil
 }

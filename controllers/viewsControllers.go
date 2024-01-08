@@ -14,8 +14,7 @@ func RegisterView(c *gin.Context)  {
 
 func IndexView(c *gin.Context)  {
     // Solucion a todo esto, dejar todos los html como antes, pero en los handlers checar por la session y si no hay una sesion redirigir al login pero pues si hay una sesion seguir con todos los procesos
-    // PONER EN LAS COOKIES EL USUARIO TMB
-    user, err := helpers.GetSession(c)
+    user, err := helpers.GetUserSession(c)
     if err != nil {
         c.HTML(http.StatusOK, "login.html", nil)
     }
@@ -29,4 +28,7 @@ func IndexView(c *gin.Context)  {
 
 func LoginView(c *gin.Context)  {
     c.HTML(http.StatusOK, "login.html", nil)
+}
+func CountView(c *gin.Context)  {
+    c.HTML(http.StatusOK, "test.html", nil)
 }
