@@ -1,0 +1,13 @@
+{{ template "insanity" .Render }}
+
+{{ define "insanity" }}
+        {{ range.Tweets }}
+            {{ template "tweet.html" . }}
+        {{ end }}
+
+        {{ if .More }}
+            <div class="more" hx-get="/?load={{ .Next }}" hx-trigger="revealed" hx-swap="outerHTML">
+                X
+            </div>
+        {{ end }}
+{{ end }}

@@ -1,0 +1,16 @@
+{{ template "tweet-form" . }}
+
+{{ define "tweet-form" }}
+<form hx-swap="outerHTML" hx-post="/tweet">
+        <input hidden type="" name="username" value="{{ .User }}">
+        <h1>welcome {{ .User }} </h1>
+        <label for="tweet">Tweet to your heart</label>
+        <textarea name="tweet" rows="2" cols="30"></textarea>
+            <button class="confirm-button" type="">
+                <div class="confirm-container">
+                    <span id="ok">Tweet</span>
+                    <span id="exclamation">!</span>
+                </div>
+            </button>
+    </form>
+{{ end }}

@@ -28,7 +28,7 @@ input {
     font-family: 'PersonifiedUX', sans-serif;
 }
 
-h1, label, span{
+h1, label, span, p{
     font-family: 'PersonifiedUX', sans-serif;
     font-size: 4rem;
 }

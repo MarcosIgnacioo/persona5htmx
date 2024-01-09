@@ -1,0 +1,7 @@
+{{ template "oob-tweet" . }}
+
+{{ define "oob-tweet" }}
+<div hx-swap-oob="afterbegin" class="tweets">
+    {{ template "tweet.html" . }}
+</div>
+{{ end }}

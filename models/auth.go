@@ -1,5 +1,5 @@
 package models
 type Session struct {
-    User *User
-    Tweets *[] Tweet
+    User string
+    Render *Tweets
 }

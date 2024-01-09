@@ -1,0 +1,8 @@
+{{ template "tweet" . }}
+
+{{ define "tweet"  }}
+    <div class="tweet">
+        <h1>{{ .Author }}</h1>
+        <p> {{ .Content }} </p>
+    </div>
+{{ end }}

@@ -27,7 +27,8 @@ func CreateTweet(c *gin.Context)  {
         c.Status(400)
         return
     }
-    c.HTML(http.StatusOK, "prueba.html", tweet)
+    c.HTML(http.StatusOK, "tweet-form.html", tweet)
+    c.HTML(http.StatusOK, "oob-tweet.html", tweet)
 }
 
 func GetTweet(c *gin.Context)  {

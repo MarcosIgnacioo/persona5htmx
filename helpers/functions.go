@@ -2,7 +2,10 @@ package helpers
 
 import (
 	"errors"
+	"fmt"
+	"strconv"
 
+	"github.com/MarcosIgnacioo/personahtmx/crud"
 	"github.com/MarcosIgnacioo/personahtmx/initializers"
 	"github.com/MarcosIgnacioo/personahtmx/models"
 	"github.com/gin-gonic/gin"
@@ -33,4 +36,24 @@ func GetUserSession(c *gin.Context) (*models.User, error) {
         return nil, errors.New("Error at GetSession")
     }
     return user, nil
+}
+
+func LoadTweets(c *gin.Context )  models.Tweets {
+    tweetLoad := c.Query("load")
+    load, error := strconv.Atoi(tweetLoad)
+    if error != nil {
+        load = 0
+    }
+    template := "tweets.html"
+    if load == 0 {
+        template = "index.html" 
+    }
+    fmt.Println("////")
+    fmt.Println(load)
+    fmt.Println(tweetLoad)
+    fmt.Println("\\\\\\")
+    tweets := crud.GetAll(load)
+
+    return models.Tweets { Tweets: tweets, Start: load, Next: load + 2,More: load < 100, Template: template}
+
 }

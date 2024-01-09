@@ -43,14 +43,14 @@ func RegisterUser(c *gin.Context)  {
         return
     }
 
-    tweets := crud.GetAll() 
     session, _ := initializers.Store.Get(c.Request, "session")
     session.Values["user"] = user
     session.Save(c.Request, c.Writer)
 
 
     helpers.CreateSession(&user, c)
-    data := models.Session { User: &user, Tweets: tweets, }
+    tweetsHome := helpers.LoadTweets(c)
+    data := models.Session { User: user.Username, Render: &tweetsHome, }
     c.HTML(http.StatusOK, "index.html", data)
 }
 
@@ -61,10 +61,11 @@ func LogInUser(c *gin.Context)  {
 
     if helpers.CheckPasswordHash(password, user.Password) {
 
-        tweets := crud.GetAll() //Tunear esto apra que soljjo de los primeros 50 
         helpers.CreateSession(user, c)
-        data := models.Session { User: user, Tweets: tweets, }
 
+        tweetsHome := helpers.LoadTweets(c)
+
+        data:= models.Session { User: user.Username, Render: &tweetsHome, }
         c.HTML(http.StatusOK, "index.html", data )
     } else {
         c.Status(400)

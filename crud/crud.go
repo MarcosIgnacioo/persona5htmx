@@ -10,8 +10,8 @@ func Get(username string) *models.User {
     initializers.DB.First(&user,"username = ?", username)
     return &user
 }
-func GetAll()  *[] models.Tweet {
+func GetAll(offset int)  [] models.Tweet {
     var Tweets [] models.Tweet;
-    initializers.DB.Find(&Tweets)
-    return &Tweets
+    initializers.DB.Limit(2).Offset(offset).Find(&Tweets)
+    return Tweets
 }

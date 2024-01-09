@@ -1,8 +1,8 @@
 {{ template "head.html" . }}
 <body>
-    <form hx-post="/tweet">
-        <input hidden type="" name="username" value="{{ .User.Username }}">
-        <h1>welcome {{ .User.Username }} </h1>
+    <form hx-swap-oob="afterbegin" hx-target=".tweets" hx-swap="outerHTML" hx-post="/tweet">
+        <input hidden type="" name="username" value="{{ .User }}">
+        <h1>welcome {{ .User }} </h1>
         <label for="tweet">Tweet to your heart</label>
         <textarea name="tweet" rows="2" cols="30"></textarea>
             <button class="confirm-button" type="">
@@ -13,16 +13,6 @@
             </button>
     </form>
     <div class="tweets">
-        {{ range .Tweets }}
-            {{ template "tweet" . }}
-        {{ end }}
+        {{ template "tweets.html" . }}
     </div>
 </body>
-{{ template "footer.html" . }}
-
-{{ define "tweet" }}
-    <div class="tweet">
-        <h1>{{ .Author }}</h1>
-        <p> {{ .Content }} </p>
-    </div>
-{{ end }}

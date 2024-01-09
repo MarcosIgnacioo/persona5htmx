@@ -2,7 +2,6 @@ package controllers
 
 import (
 	"net/http"
-	"github.com/MarcosIgnacioo/personahtmx/crud"
 	"github.com/MarcosIgnacioo/personahtmx/helpers"
 	"github.com/MarcosIgnacioo/personahtmx/models"
 	"github.com/gin-gonic/gin"
@@ -18,11 +17,10 @@ func IndexView(c *gin.Context)  {
     if err != nil {
         c.HTML(http.StatusOK, "login.html", nil)
     }
+    tweetsHome := helpers.LoadTweets(c)
+    session := models.Session { User: user.Username, Render: &tweetsHome, }
 
-    tweets := crud.GetAll()
-
-    session := models.Session { User: user, Tweets: tweets, }
-    c.HTML(http.StatusOK, "index.html", session)
+    c.HTML(http.StatusOK, tweetsHome.Template , session)
 }
 
 
@@ -31,4 +29,10 @@ func LoginView(c *gin.Context)  {
 }
 func CountView(c *gin.Context)  {
     c.HTML(http.StatusOK, "test.html", nil)
+}
+
+func CheckError(err error) {
+    if err != nil {
+        panic("Hubo un error")
+    }
 }
