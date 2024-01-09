@@ -12,6 +12,6 @@ func Get(username string) *models.User {
 }
 func GetAll(offset int)  [] models.Tweet {
     var Tweets [] models.Tweet;
-    initializers.DB.Limit(2).Offset(offset).Find(&Tweets)
+    initializers.DB.Order("updated_at desc").Limit(2).Offset(offset).Find(&Tweets)
     return Tweets
 }

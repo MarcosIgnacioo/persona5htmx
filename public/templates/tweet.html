@@ -2,7 +2,11 @@
 
 {{ define "tweet"  }}
     <div class="tweet">
-        <h1>{{ .Author }}</h1>
+    <img src="" alt="">
+        <p>@{{ .Author }}</p>
         <p> {{ .Content }} </p>
+        <button type="">Like</button>
+        <button type="">Retweet</button>
+        <button type="">Reply</button>
     </div>
 {{ end }}

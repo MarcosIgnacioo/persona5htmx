@@ -1,6 +1,6 @@
 {{ template "head.html" . }}
 <body>
-    <form hx-swap-oob="afterbegin" hx-target=".tweets" hx-swap="outerHTML" hx-post="/tweet">
+    <form hx-swap="afterbegin" hx-target=".tweets" hx-post="/tweet">
         <input hidden type="" name="username" value="{{ .User }}">
         <h1>welcome {{ .User }} </h1>
         <label for="tweet">Tweet to your heart</label>
