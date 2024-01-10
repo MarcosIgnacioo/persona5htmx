@@ -23,6 +23,8 @@ func GetAll(offset int)  [] models.Tweet {
     initializers.DB.Table("tweets").
         Select("tweets.content as parent_content, tweet_replies.content as reply_content").
         Joins("RIGHT JOIN tweet_replies ON tweet_replies.parent_tweet_id = tweets.id").
+	    Limit(2).
+	    Offset(offset).
         Scan(&result)
 
     initializers.DB.Order("updated_at desc").Limit(2).Offset(offset).Find(&Tweets)
