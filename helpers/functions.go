@@ -54,6 +54,10 @@ func LoadTweets(c *gin.Context )  models.Tweets {
     fmt.Println("\\\\\\")
     tweets := crud.GetAll(load)
 
-    return models.Tweets { Tweets: tweets, Start: load, Next: load + 2,More: load < 100, Template: template}
+
+
+    // TODO hacer un join de las columnas de contenido y autor de la tabla replies con el id de LastReplyID para cada registro y agregarle al struct de abajo una nueva propiedad que sea replies que sea un arreglo de tweets igualmente 
+
+    return models.Tweets { Tweets: tweets, Start: load, Next: load + 2,More: load < 4, Template: template}
 
 }

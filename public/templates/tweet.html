@@ -1,12 +1,32 @@
 {{ template "tweet" . }}
 
 {{ define "tweet"  }}
-    <div class="tweet">
-    <img src="" alt="">
+<div class="tweet">
+    <div class="user-container">
+        <img src="./assets/img/peach.jpg" alt="">
         <p>@{{ .Author }}</p>
-        <p> {{ .Content }} </p>
-        <button type="">Like</button>
-        <button type="">Retweet</button>
-        <button type="">Reply</button>
     </div>
+    <p> {{ .Content }} </p>
+    <div class="actions-tweet">
+        <span class="fav-container">
+            <input class="fav" type="checkbox" name="fav/{{ .ID }}" value="">
+                {{ template "star.html" . }} 
+        </span>
+        <form class="reply-container" hx-target=".last-reply" hx-post="/tweet/{{ .ID }}/reply">
+            <textarea name="reply-content" rows="3" cols="40">
+            </textarea>
+            <button class="reply-button" type="">
+                <span>A</span>
+                <span>m</span>
+                <span>b</span>
+                <span>u</span>
+                <span>s</span>
+                <span>h</span>
+            </button>
+        </form >
+    </div>
+    <p class="last-reply">
+        {{ .LatestReplyID }}
+    </p>
+</div>
 {{ end }}

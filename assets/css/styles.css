@@ -1,9 +1,12 @@
-*{
+html{
     margin: 0;
     padding: 0;
     box-sizing: border-box;
     font-size: 65%;
     background: radial-gradient(circle, #89384B, #DC1041);
+}
+button {
+    background-color: #DC1041;
 }
 footer * {
     position: absolute;
@@ -37,7 +40,7 @@ h1 {
     font-size: 6rem;
     text-align: center;
 }
- span{
+span{
     font-family: 'Earwig', sans-serif;
     font-size: 12rem;
 }
@@ -47,6 +50,12 @@ form {
     flex-direction: column;
     justify-items: center;
     align-items: center;
+}
+.tweets {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    flex-direction: column;
 }
 .confirm-container {
     margin-top: 25px;
@@ -92,6 +101,98 @@ form {
     background-color: none;
     color: snow;
 }
+.actions-tweet {
+    display: flex;
+    flex-direction: column;
+}
 .tweet {
+    padding: 2%;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    background: radial-gradient(circle, #131212, #141313,#131212, #141313 , #131212, #141313,#131212, #141313 , #131212, #141313,#131212, #141313 , #131212, #141313,#131212, #141313 , #131212, #141313,#131212, #141313 );
+    opacity: 95%;
+}
+.user-container {
+    display: flex;
+    flex-direction: column;
+}
+.user-container * {
+    font-size: 2rem;
+    margin: 0;
+}
 
+.tweet img{
+    border: #EAC375 solid 3px;
+    width: 12%;
+    border-radius: 5px;
+}
+.fav-container {
+    display: flex;
+    flex-direction: row;
+}
+.fav {
+    opacity: 0;
+    position: absolute;
+    width: 1.3%;
+    height: 3%;
+}
+.reply-container {
+    margin-top: 7px;
+    display: flex;
+    align-items: center;
+    justify-items: center;
+    margin-right: auto;
+}
+.reply-button {
+    background: none;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 2%;
+    color: snow;
+    font-family: 'Earwig';
+    margin-left: 5px;
+    display: flex;
+}
+.reply-button *{
+    font-size: 5rem;
+}
+
+.reply-button:last-child::after {
+    font-size: 5rem;
+    content: '!!!';
+    opacity: 0;
+}
+.reply-button:hover::after {
+    animation: moveUpDown 0.2s infinite; 
+    opacity: 1;
+}
+.reply-button:nth-child(1):hover{
+    animation-delay: 5s;
+}
+
+.reply-button:hover {
+    color: #ac2747;
+    animation: moveUpDown 0.2s infinite; 
+}
+@keyframes moveUpDown {
+    0%, 100% {
+        transform: translateY(0); /* Empieza y termina en la posición original */
+        rotate: 0deg;
+    }
+    50% {
+        transform: translateY(-1px); /* Se mueve hacia arriba */
+        rotate: 0.5deg;
+    }
+}
+
+@keyframes exclamationMarks{
+    0%, 100% {
+        transform: translateY(0); /* Empieza y termina en la posición original */
+        rotate: 0deg;
+    }
+    50% {
+        transform: translateY(-20px); /* Se mueve hacia arriba */
+        rotate: 1deg;
+    }
 }

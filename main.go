@@ -25,6 +25,7 @@ func main()  {
     // Tweets
     r.POST("/tweet", controllers.CreateTweet)
     r.GET("/tweet/:id", controllers.GetTweet)
+    r.POST("/tweet/:id/reply", controllers.ReplyTweet)
     r.POST("/incr", controllers.Count) 
     r.GET("/test", controllers.Test)
     r.Run() 

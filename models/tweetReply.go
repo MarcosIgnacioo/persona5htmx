@@ -6,6 +6,14 @@ type TweetReply struct {
     gorm.Model
     Author string `gorm:"column:author"`
     Content string `gorm:"column:content"`
-    ParentId uint `gorm:"column:parent_id"` 
-    ParentTweet Tweet `gorm:"column:parent_tweet"` 
+    ParentTweetID uint `gorm:"column:parent_tweet_id"`
+    ParentTweet Tweet `gorm:"foreignkey:ParentTweetID"`
+}
+
+func NewTweetReply(author string, content string, parentTweetID uint) TweetReply {
+    return TweetReply{
+        Author: author,
+        Content: content,
+        ParentTweetID: parentTweetID,
+    }
 }

@@ -10,6 +10,6 @@ func init()  {
     initializers.LoadEnvVariables()
     initializers.ConnectToDB()
     initializers.SetupCookies()
-    initializers.DB.AutoMigrate(&models.Prueba{}, models.User{}, models.Tweet{})
+    initializers.DB.AutoMigrate(&models.Prueba{}, models.User{}, &models.Tweet{}, models.TweetReply{})
     initializers.DB.Set("gorm:table_options", "ENGINE=InnoDB").AutoMigrate(&models.Prueba{})
 }
