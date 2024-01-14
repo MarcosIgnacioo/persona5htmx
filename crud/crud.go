@@ -11,27 +11,35 @@ func Get(username string) *models.User {
     initializers.DB.First(&user,"username = ?", username)
     return &user
 }
+
+type result struct {
+    ParentAuthor string `gorm:"column:p_author"`
+    ParentContent string `gorm:"column:p_content"`
+    ReplyAuthor string `gorm:"column:reply_author"`
+    ReplyContent  string `gorm:"column:reply_content"`
+}
+
+func (r *result) String() string  {
+    return fmt.Sprintf("PA: %v\nPC: %v\n///\nRA: %v\nRC: %v", r.ParentAuthor, r.ParentContent,r.ReplyAuthor ,r.ReplyContent)
+}
+
 func GetAll(offset int)  [] models.Tweet {
-    fmt.Println("asdfdasfasdfasdfasdfhjasdhjfhajsdf")
     var Tweets [] models.Tweet;
     //TODO modificar el struct de tweet para que guarde un Tweet y que este sea la ultima respuesstaaa
-    var result []struct {
-        ParentContent string `gorm:"column:parent_content"`
-        ReplyContent  string `gorm:"column:reply_content"`
-    }
-
-    initializers.DB.Table("tweets").
-        Select("tweets.content as parent_content, tweet_replies.content as reply_content").
+    var result result
+    // var tl models.TweetLayout
+    
+    initializers.
+        DB.Table("tweets").
+        Select("tweets.content as p_content, tweets.author as p_author, tweet_replies.content as reply_content, tweet_replies.author as reply_author").
         Joins("RIGHT JOIN tweet_replies ON tweet_replies.parent_tweet_id = tweets.id").
+        Order("tweets.updated_at DESC").
 	    Limit(2).
 	    Offset(offset).
         Scan(&result)
 
-    initializers.DB.Order("updated_at desc").Limit(2).Offset(offset).Find(&Tweets)
+    initializers.DB.Order("updated_at DESC").Limit(2).Offset(offset).Find(&Tweets)
 
-    fmt.Println("/////")
-    fmt.Println(result)
-    fmt.Println("/////")
     return Tweets
 }
 

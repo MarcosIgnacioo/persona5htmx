@@ -25,6 +25,7 @@
             </button>
         </form >
     </div>
+    <span class="view-tweet" hx-get="/tweet/{{ .ID }}" hx-target="body" hx-push-url="/tweet/{{ .ID }}">See your heart</span>
     <p class="last-reply">
         {{ .LatestReplyID }}
     </p>

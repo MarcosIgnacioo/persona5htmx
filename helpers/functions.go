@@ -2,9 +2,7 @@ package helpers
 
 import (
 	"errors"
-	"fmt"
 	"strconv"
-
 	"github.com/MarcosIgnacioo/personahtmx/crud"
 	"github.com/MarcosIgnacioo/personahtmx/initializers"
 	"github.com/MarcosIgnacioo/personahtmx/models"
@@ -48,10 +46,6 @@ func LoadTweets(c *gin.Context )  models.Tweets {
     if load == 0 {
         template = "index.html" 
     }
-    fmt.Println("////")
-    fmt.Println(load)
-    fmt.Println(tweetLoad)
-    fmt.Println("\\\\\\")
     tweets := crud.GetAll(load)
 
 

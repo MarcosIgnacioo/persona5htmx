@@ -11,4 +11,5 @@ type Tweet struct {
     Likes         uint     `gorm:"column:likes"`
     Retweets      uint     `gorm:"column:retweets"`
     LatestReplyID uint     
+    LatestReply   string     `gorm:"default:NULL"`
 }

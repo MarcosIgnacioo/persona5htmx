@@ -3,10 +3,12 @@ html{
     padding: 0;
     box-sizing: border-box;
     font-size: 65%;
-    background: radial-gradient(circle, #89384B, #DC1041);
+    /* background: radial-gradient(circle, #89384B, #DC1041); */
+    background: radial-gradient(circle, #a20028, #870526);
+
 }
 button {
-    background-color: #DC1041;
+    background: none;
 }
 footer * {
     position: absolute;
@@ -175,15 +177,22 @@ form {
     color: #ac2747;
     animation: moveUpDown 0.2s infinite; 
 }
+.view-tweet {
+    cursor: pointer;
+    font-size: 4rem;
+    font-family: 'PersonifiedUX';
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+    text-decoration:underline
+}
 @keyframes moveUpDown {
-    0%, 100% {
-        transform: translateY(0); /* Empieza y termina en la posición original */
-        rotate: 0deg;
-    }
-    50% {
-        transform: translateY(-1px); /* Se mueve hacia arriba */
-        rotate: 0.5deg;
-    }
+0%, 100% {
+    transform: translateY(0); /* Empieza y termina en la posición original */
+    rotate: 0deg;
+}
+50% {
+    transform: translateY(-1px); /* Se mueve hacia arriba */
+    rotate: 0.5deg;
+}
 }
 
 @keyframes exclamationMarks{

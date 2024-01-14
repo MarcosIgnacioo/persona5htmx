@@ -7,3 +7,6 @@ type Tweets struct {
     More  bool
     Template string
 }
+
+type TestGamer struct {
+}
